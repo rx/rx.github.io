@@ -1,0 +1,74 @@
+---
+layout: post
+title: DRY views using builders - AKA markup sucks
+date: '2009-04-28T19:49:00.000-07:00'
+author: Rx
+tags:
+- rails
+- ruby
+- dry
+- formtastic
+- views
+- builder
+modified_time: '2009-05-10T07:08:36.670-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-1024490677330329632
+blogger_orig_url: http://railsindirection.blogspot.com/2009/04/dry-views-using-builders-aka-markup.html
+---
+
+In this post I'm taking a look at how to DRY the view code from the <a
+      href='http://guides.rubyonrails.org/getting_started.html'>Getting Started with Rails</a><br /><br
+      />The first thing I noticed about the Getting Started Guide was that the mark-up was really not very dry, so
+      the question became how can I dry up the mark-up? OK so it does use a partial for the shared edit and new form. It
+      has been my experience that most forms and lists are pretty simple and should not need this much mark-up. Truth be
+      told, I hate writing mark-up. So how can I describe the presentation with enough detail so that I don't have to
+      write so much? Don't get me wrong I don't mind writing mark-up that is unique for a given page. Just don't make me
+      write more form and table markup...please.<br /><br />So we want to be dry, cool. But we also want to
+      be DRO (don't repeat others). So who is solving this problem? Let's start with our forms. How to DRY our forms. A
+      quick look around a common pattern appears: Use Builders. A builder allows an application to emit custom code for
+      a given form field. Were going to examine the formtastic plugin:<br />*
+      http://github.com/justinfrench/formtastic/tree/master<br /><br />In our case we would like to write
+      simple erb code that emits all the tags for our form. In keeping with our DRO model we are going to take the
+      formtastic plugin for a spin and see what we get.<br /><br />First thing is to install the formtastic
+      plugin:<br /><br /><pre class='code'><code><br />script/plugin install
+      git://github.com/justinfrench/formtastic.git <br /></code></pre><br /><br />Now
+      let's see if we can update the _form.html.erb file using formtastic:<br /><br /><pre class='code'><code><br
+      />&lt;% @post.tags.build if @post.tags.empty? %&gt;<br />&lt;% form_for(@post) do |post_form|
+      %&gt;<br /> &lt;%= post_form.error_messages %&gt;<br /> &lt;p&gt;<br />
+      &lt;%= post_form.label :name %&gt;&lt;br/&gt;<br /> &lt;%= post_form.text_field :name %&gt;<br
+      /> &lt;/p&gt;<br /> &lt;p&gt;<br /> &lt;%= post_form.label :title, "title" %&gt;&lt;br/&gt;<br
+      /> &lt;%= post_form.text_field :title %&gt;<br /> &lt;/p&gt;<br /> &lt;p&gt;
+      <br /> &lt;%= post_form.label :content %&gt;&lt;br/&gt;<br /> &lt;%=
+      post_form.text_area :content %&gt;<br /> &lt;/p&gt;<br /> &lt;h2&gt;Tags&lt;/h2&gt;<br
+      /> &lt;% post_form.fields_for :tags do |tag_form| %&gt;<br /> &lt;p&gt;<br /> &lt;%=
+      tag_form.label :name, 'Tag:' %&gt;<br /> &lt;%= tag_form.text_field :name %&gt;<br />
+      &lt;/p&gt;<br /> &lt;% unless tag_form.object.nil? || tag_form.object.new_record? %&gt;<br
+      /> &lt;p&gt;<br /> &lt;%= tag_form.label :_delete, 'Remove:' %&gt;<br /> &lt;%=
+      tag_form.check_box :_delete %&gt;<br /> &lt;/p&gt;<br /> &lt;% end %&gt;<br />
+      &lt;% end %&gt;<br /> &lt;p&gt;<br /> &lt;%= post_form.submit "Save" %&gt;<br
+      /> &lt;/p&gt;<br />&lt;% end %&gt; <br /></code></pre><br /><br
+      />With our new form builder we can dry this up a little bit:<br /><pre class='code'><code><br
+      />&lt;% @post.tags.build if @post.tags.empty? %&gt;<br /><br />&lt;%
+      semantic_form_for(@post) do |post_form| %&gt;<br /> &lt;%= post_form.error_messages %&gt;<br
+      /> &lt;%= form.inputs %&gt;<br /><br /> &lt;h2&gt;Tags&lt;/h2&gt;<br />
+      &lt;% post_form.fields_for :tags do |tag_form| %&gt;<br /> &lt;p&gt;<br /> &lt;%=
+      tag_form.label :name, 'Tag:' %&gt;<br /> &lt;%= tag_form.text_field :name %&gt;<br />
+      &lt;/p&gt;<br /> &lt;% unless tag_form.object.nil? || tag_form.object.new_record? %&gt;<br
+      /> &lt;p&gt;<br /> &lt;%= tag_form.label :_delete, 'Remove:' %&gt;<br /> &lt;%=
+      tag_form.check_box :_delete %&gt;<br /> &lt;/p&gt;<br /> &lt;% end %&gt;<br />
+      &lt;% end %&gt;<br /> &lt;%= form.buttons %&gt;<br />&lt;% end %&gt; <br /></code></pre><br
+      /><br />A couple of things to notice when you run this. You now have some more view logic that was
+      provided by formtastic. Required fields are marked on the form with an *. The form is now drawn with a fieldset.
+      The form uses left justified labels. If you look at the browswer source you'll also notice that it uses a &lt;ol&gt>
+      elements. (This is why the fields are numbered.) The form fields tags now have classes and id's for all the tags.
+      <br /><br />OK that went pretty well..so let's go a step further and refactor the tags:<br /><pre
+      class='code'><code><br />&lt;% @post.tags.build if @post.tags.empty? %&gt;<br />&lt;%
+      semantic_form_for(@post) do |post_form| %&gt;<br /> &lt;%= post_form.inputs %&gt;<br />
+      &lt;% post_form.semantic_fields_for :tags do |tag_form| %&gt;<br /> &lt;% tag_form.inputs :name,
+      :name =&gt; 'Tags' do %&gt;<br /> &lt;%= tag_form.input :name %&gt;<br /> &lt;%
+      unless tag_form.object.nil? || tag_form.object.new_record? %&gt;<br /> &lt;%= tag_form.input
+      :_delete, :as=&gt;:boolean, :label =&gt; 'Remove:' %&gt; <br /> &lt;% end %&gt;<br />
+      &lt;% end %&gt;<br /> &lt;% end %&gt;<br /> &lt;%= post_form.buttons %&gt;<br
+      />&lt;% end %&gt; <br /></code></pre><br /><br />Now we are getting
+      somewhere! No mark-up! I could get use to doing forms like this.<br /><br />My next implementation
+      step is to generate client side validations by reading the model validations and presenting them at input time.
+      Check out the <a href='http://livevalidation.rubyforge.org/'>livevalidation plugin</a>

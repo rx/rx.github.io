@@ -1,0 +1,82 @@
+---
+layout: post
+title: Rails 3 templates and engines
+date: '2010-05-10T11:46:00.000-07:00'
+author: Rx
+tags: 
+modified_time: '2010-05-13T06:59:45.113-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-7227005150992511096
+blogger_orig_url: http://railsindirection.blogspot.com/2010/05/rails-3-templates-and-engines.html
+---
+
+<div><br />What I really wanted to do was to setup a rails 3 environment that uses
+      engines to organize modular functionality.<br /><br />It has ALWAYS been my experience that any
+      project will quickly get out of hand if the organization is not tackled very early. Rails projects get messy fast.
+      If you are disciplined enough to use modules for functionality then you can avoid some of these issues. But I
+      really don't like having module names that I have to use spread out in my code. (Albeit sometimes a module to
+      separate functionality is the best course of action.) I've always wanted to have my own app namespace for my
+      functionality boundaries. Wouldn't this be nice:<br /></div><br /><script
+      src="http://gist.github.com/396378.js"></script><br /><div><br />With plugins I got
+      closer. With the gemifcation I got a little help packaging my plugins up and defining dependencies.<br /><br
+      />Then came along the rails engines plugin. I have to admit I liked it, but never felt comfortable diving in.
+      The reason is that engine plugins required a fair amount of twidling bits in rails to get it working right.
+      Whenever that happens I feel a little exposed. (Not that that is always a bad thing!) We'll good news for me...I
+      waited long enough and rails 3 (and rails 2.3 as well) has engines as first class citizens.<br /><br />I've
+      spend a few days pushing them around and I like it. With a little work I was able to create some rails templates
+      that will generate a new rails engine. I then configure the hosting app Gemfile to include my engine and I'm off
+      and running. Nice!<br /><br />I thought I'd share the work I've done for those that want to do
+      something similar.<br /><br />NOTE: All these samples are for postgres and rspec. On testing, there
+      are many options out there. I happen to dig rspec, if you have not tried it you should. If you care about your
+      data you will stop using mysql or sqllite and start using postgres. <br /><br />You can find the
+      templates @ <a href="http://github.com/voomify/voomify/templates">http://github.com/voomify/voomify/templates</a>.<br
+      />(Warning they reference each other using a local path, so you will need to change that if you plan on using
+      them for yourself. You can create a directory ~/dev/voomify/templates and put the templates there and they will
+      work for you.)<br /><br />If you have not checked out templates for rails 2.3 and rails 3 then you
+      should do some reading. This is not a tutorial. Here are some references to get started with:<br /><a
+      href="http://m.onkey.org/2008/12/4/rails-templates">http://m.onkey.org/2008/12/4/rails-templates</a><br
+      /><a href="http://asciicasts.com/episodes/148-app-templates-in-rails-2-3">http://asciicasts.com/episodes/148-app-templates-in-rails-2-3</a><br
+      /><a href="http://benscofield.com/2009/09/application-templates-in-rails-3/">http://benscofield.com/2009/09/application-templates-in-rails-3/</a><br
+      /><br />Here are some sample templates that really helped me get started:<br /><a
+      href="http://github.com/jm/rails-templates">http://github.com/jm/rails-templates</a><br /><br />So
+      what do these templates do? Well there are three templates:<br />1) app.rb - this creates a rails
+      application with rspec and sets it up to be compatible with our engines.<br />2) engine.rb - this creates a
+      rails application that is also an engine.<br />3) finailize.rb - this finalizes our application or engine.
+      It is always called at the end of the process.<br /></div><br /><br />I then created a
+      litle bash script that will make it easy for me to call these.<br /><br />Normally I have to put
+      together a long command line:<br /><script src="http://gist.github.com/396415.js"></script><br
+      /><br />With this bash script (in ~/.bashrc on ubuntu):<br /><script
+      src="http://gist.github.com/396410.js"></script><br />Credit for this goes to: Ryan Bates
+      (http://asciicasts.com/episodes/148-app-templates-in-rails-2-3)<br /><br />My command line is now much
+      simpler (whew!):<br /><script src="http://gist.github.com/396412.js"></script><br /><br
+      />OK time to get cooking. First let's create a rails 3 engine. This engine will be embedded in our application
+      container. It will be setup with rspec and all the proper '.gitignore' files. It will prompt you for the engine
+      name and the database username. (It also adds jeweler to the app gems. We need this because our engines use
+      jeweler to gemify themselves. Maybe in a later post I will figure out how to remove this dependency.)<br /><br
+      />Side Note: With rails 3 you no longer have to do that messy 'script/generate rspec_XXXX' junk anymore. Rspec
+      is now installed as the default generator and you can simply run 'rails g scaffold ...'. I dig it.<br /><br
+      /><script src="http://gist.github.com/396445.js"></script><br /><br />Now let's add
+      some job scaffolding:<br /><br /><script src="http://gist.github.com/396476.js?file=gistfile1.txt"></script><br
+      /><br />The way these engines are setup they are also full blown applications that we can test inside.
+      This way we develop the engine functionality just like we are in any other application. We can run generators,
+      write tests the way we are accustom to. From your perspective it is just a rails app. How easy is that?<br /><br
+      />Now let's see it running like any other rails app:<br /><br /><script
+      src="http://gist.github.com/396528.js?file=gistfile1.txt"></script><br /><br />Let's goto the
+      jobs and see them in action: <a href="http://localhost:3000/jobs">http://localhost:3000/jobs</a><br
+      /><br />Before we embed this we need to create a gem.<br /><script
+      src="http://gist.github.com/396484.js?file=gistfile1.txt"></script><br /><br />Ok let's embed
+      this into our 'host' application.<br /><br />Generate the host application:<br /><br /><script
+      src="http://gist.github.com/396458.js"></script><br /><br />Add the following to your
+      Gemfile:<br /><br /><script src="http://gist.github.com/396472.js?file=gistfile1.txt"></script><br
+      /><br />Ok now for migrations. We don't have any helpers for migrations yet. So for now you need to copy
+      your engine migration into your app. Something like this:<br /><br /><script
+      src="http://gist.github.com/396465.js?file=gistfile1.txt"></script><br /><br />Now startup
+      your 'host' app and you will see your jobs. Nice! Imagine how modular you could be! Like a lego version of your
+      coding self.<br /><br /><script src="http://gist.github.com/396456.js?file=gistfile1.txt"></script><br
+      /><br />Let's goto the jobs and see them embedded inside our application as a rails 3 engine!: <a
+      href="http://localhost:3000/jobs">http://localhost:3000/jobs</a><br /><br /><br />Using
+      the voomify-jobs.gemspec in the jobs engine directory you can specify gem depenencies. So if your engine depends
+      on other gems you just need to add them here. That includes other engines. Now you can explicitly manage your
+      dependencies. I feel so clean ... you?<br /><br />Happy engines.<br /><br />Note: I ran
+      into a bundler, rake, gem install issue that I cover in this post:<br /><a
+      href="http://railsindirection.blogspot.com/2010/05/rails-3-gems-rake-and-bundler.html">Rails 3, Gems, Rake and
+      Bundler</a>

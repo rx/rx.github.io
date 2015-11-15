@@ -1,0 +1,178 @@
+---
+layout: post
+title: All great journeys start with one step
+date: '2009-04-17T07:12:00.000-07:00'
+author: Rx
+tags: 
+modified_time: '2009-04-17T08:57:18.604-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-1709535740918408859
+blogger_orig_url: http://railsindirection.blogspot.com/2009/04/all-great-journeys-start-with-one-step.html
+---
+
+<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Like
+      most of you that came to Ruby on Rails.  I was excited to see what this promising framework could do for
+      productivity.  Before Rails I had designed large scale commercial web applications on both C++ and Java.  My real
+      specialty was to define the framework and then extend it as the application demands.  We wanted our code to be DRY
+      (before everyone was using the term DRY).  A good framework adds structure, is easy to understand, is easy to
+      extend and eliminates repetitive code.  Rails certainly lives up to my definition of a good framework. It handles
+      many of the most common issues that teams building data driven web applications have to solve.  Ruby is the
+      giant's shoulders that Rails stands on.  The language is so expressive and dynamic it creates so many
+      possibilities.  </span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Now
+      it is time for a small trip down architecture memory lane. </span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">I've
+      been developing data driven web applications since 1996.  Looking back on it is seems archaic.   At the time we
+      were forging new ground.  </span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Version
+      1.0 1996:  We created one of the earliest commercial, dynamic, configurable, web based business applications.  One
+      thing that made these applications so effective is that they were massively configurable by the clients.
+       Everything, and I mean everything, could be customized by the client.  Back then the tools were non-existent.
+       Our first application was MSFT based.  Good old fashion COM objects talking to ASP 1.0.  We developed a model
+      layer with the COM objects and the ASP programmers then consumed them to present the view.  It was a simple MV
+      design.  (No controller.)  HTML was so limited back then, so we had a java applet that handled the advanced data
+      entry UI.  This essentially had to mimic what we had built as a windows application.   </span></p>
+      <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Version
+      2.0 1997: We designed a JavaScript version that eliminated the 'heavy' Java applet from the client. This was a
+      very ambitious multiplatform JavaScript library.  It had to understand a very rich meta-data layer that described
+      how the data entry for the client should behave.  The DOM was not very rich and if you wanted to dynamically do
+      much of anything on the client you had to write it from scratch and then make it work on all the browsers.</span></p>
+      <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Version
+      3.0 1998: So far these applications were installed by large fortune 500 businesses.   But it was too complicated
+      to setup and maintain for a midsize company.  So we introduced the Software as a Service (SaaS).  Back then we
+      called it ASP or our Hosted business.  This introduced a whole bunch of new design challenges.  Should there be
+      one database per customer or larger databases shared with a 'domain' column partitioning the data.  How do you
+      manage it?  How do you scale it? How do you secure it.  This is before really anyone else had a viable SaaS
+      product much less business model.</span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Version
+      3.0 2001:  The success of all the earlier projects led to more customers with even more needs.  This time they
+      need to have a global solution that could handle many languages simultaneously.  Like many code bases the
+      investment into refactoring the original design was borrowed from for years.  As a result it never really evolved
+      as it could have.  By now the tools had advanced very far.  Java (J2EE) was leading the charge with MSFT
+      'embracing and 'extending' with .Net.  We had already  switched to Java (J2EE) and built a very cool XML driven
+      B2B product that integrated suppliers in the procurement chain. </span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">So it
+      was time to build the mother of all projects.  It had a list of requirements that would scare off most engineers.
+        </span></p> <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+      normal"><span style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">We
+      started with a simple J2EE stack layered with a bunch of Apache technologies.<span style="mso-spacerun:yes"> 
+      </span>We chose Turbine as our MVC. Our model layer was based on Torque.<span style="mso-spacerun:yes"> 
+      </span>Torque was great for navigating the model, insert, updates, deletes and transactions.<span
+      style="mso-spacerun:yes">  </span>But our views were often hitting many tables and a pedestrian Torque
+      implementation would result in too many database round trips.<span style="mso-spacerun:yes">  </span>So
+      we introduced our own read only data access layer RDAL (Rapid Data Access Layer). <span
+      style="mso-spacerun:yes"> </span>RDAL allowed us to write portable SQL and get very efficient data-access
+      out of the system all while looking like a Torque model object to the view. <span style="mso-spacerun:yes"> </span>We
+      considered JSP, ECS and Struts for the view layer.<span style="mso-spacerun:yes">  </span>In the end
+      we decided against all of them to selected Velocity.<span style="mso-spacerun:yes">  </span>What
+      attracted me to Velocity was the simplicity of the templating language.<span style="mso-spacerun:yes">  </span>It
+      could do what you normally need to do in a view very well, loop, conditionals.<span style="mso-spacerun:yes"> 
+      </span>It was not expressive enough to put logic into the view.<span style="mso-spacerun:yes">  </span>We
+      could re-use snippets of code with it (like a Rails partial).<span style="mso-spacerun:yes">   </span>Essentially
+      what we had was a J2EE/Apache MVC stack that did much of what you find in Rails. <span style="mso-spacerun:yes"> </span></span></p>
+      <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">So
+      now we had an application framework, big deal.<span style="mso-spacerun:yes">  </span>We were building
+      database driven web applications.<span style="mso-spacerun:yes">  </span>So we have a lot of CRUD
+      operations to deal with.<span style="mso-spacerun:yes">  </span>Those CRUD interfaces all had to deal
+      with the following:<o:p></o:p></span></p> <p class="MsoListParagraphCxSpFirst"
+      style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">It was a SaaS
+      offering so every CRUD set of views had to be domain aware.<o:p></o:p></span></p> <p
+      class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">Most CRUD views had
+      to support custom fields <o:p></o:p></span></p> <p class="MsoListParagraphCxSpMiddle"
+      style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">Every view had to be
+      multi-lingual with multiple users viewing the site in different languages simultaneously.<o:p></o:p></span></p>
+      <p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">Views had to support
+      role based behavior.<span style="mso-spacerun:yes">  </span>(Be aware of the role of the current user
+      and present different options based on their role.)<o:p></o:p></span></p> <p
+      class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">It was a SaaS
+      application so it had to be VERY secure.<span style="mso-spacerun:yes">  </span>We chose to implement
+      the OWASP security standards for the application.<o:p></o:p></span></p> <p
+      class="MsoListParagraphCxSpLast" style="margin-top:0in;margin-right:0in;
+      margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;mso-add-space:auto;
+      text-indent:-.25in;line-height:normal;mso-list:l0 level1 lfo1"><span
+      style="font-size:8.0pt;font-family:Symbol;mso-fareast-font-family:Symbol; mso-bidi-font-family:Symbol;color:black"><span
+      style="mso-list:Ignore">·<span style="font:7.0pt &quot;Times New Roman&quot;">          </span></span></span><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;; mso-fareast-font-family:&quot;Times
+      New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;; color:black">Every view could be
+      customized by an consulting engineer.<span style="mso-spacerun:yes">  </span>That customization would
+      override the default view behavior on a per-customer basis.<span style="mso-spacerun:yes">  </span>The
+      consults should also be able to add new views for that client.</span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Dang
+      that’s a lot of stuff each developer has to be concerned about.<span style="mso-spacerun:yes">  </span>Where
+      to start? The view layer really does nothing to provide any productivity to solve any of these problems.<span
+      style="mso-spacerun:yes">  </span>If you want to build a new or edit form you have to write a whole bunch
+      of form html.<span style="mso-spacerun:yes">  </span>If you wanted a list you would have to write a
+      bunch of table markup.<span style="mso-spacerun:yes">  </span>So the question became how do you DRY up
+      the view and meet the requirements above?<span style="mso-spacerun:yes"> </span></span></p>
+      <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Our
+      answer was to introduce a presentation markup language.<span style="mso-spacerun:yes">  </span>You
+      would describe your model in the markup and it would generate a CRUD set of views for you that does all of the
+      above automatically.<span style="mso-spacerun:yes">  </span>It was really easy to add new CRUD views
+      on a given model.<span style="mso-spacerun:yes">   </span>It was easy to change the UI design for a
+      given element.<span style="mso-spacerun:yes">  </span>We had a UI designer that would introduce new
+      behavior as we progressed on the project.<span style="mso-spacerun:yes">  </span>We could modify all
+      the views built so far with this new UI behavior.<span style="mso-spacerun:yes">  </span>Did I mention
+      that it would generate tests for you as well? It was slick as snot.</span></p> <p class="MsoNormal"
+      style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">The
+      presentation markup was concerned only with how you want to render the model(s).<span style="mso-spacerun:yes"> 
+      </span>From the markup you could embed velocity code just like a partial.<span style="mso-spacerun:yes"> 
+      </span>You could call java ‘helper’ methods.<span style="mso-spacerun:yes">  </span>It allowed
+      us to have declarative UI for much of the system.<span style="mso-spacerun:yes"> </span></span></p>
+      <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height: normal"><span
+      style="font-size:8.0pt;font-family:&quot;Georgia&quot;,&quot;serif&quot;;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">This
+      blog is will follow along as I solve the same problem, extending the rails framework along the way. <o:p></o:p></span></p>

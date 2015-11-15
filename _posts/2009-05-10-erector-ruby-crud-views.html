@@ -1,0 +1,72 @@
+---
+layout: post
+title: Erector - ruby CRUD views
+date: '2009-05-10T20:54:00.000-07:00'
+author: Rx
+tags: 
+modified_time: '2009-06-17T10:41:19.664-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-2968863888281617912
+blogger_orig_url: http://railsindirection.blogspot.com/2009/05/erector-ruby-crud-views.html
+---
+
+In my last post I created a simple Erector view with a layout and talked about the pro's and
+      con's of using a ruby class based view. Before we go any further I want to re-establish that I'm not a fan of
+      markup. So if you are a markup jockey ... then you might want to move on. This Object Oriented view business is
+      probably not your cup of tea. After all who would want clean, testable code in their views? Besides me that is.<br
+      /><br />OK you decided that you care enough about your views to read on. Stick with it, its worth the
+      ride.<br /><br />Let's get started by using the default scaffolding to generate a customer model. Run
+      the following:<br /><br /><pre class='code'><code><br />script/generate scaffold
+      customer first_name:string, last_name:string, company:string, phone:string, email:string<br /></code></pre><br
+      /><br />Then run the migration and test the pages.<br /><pre class='code'><code><br
+      />rake db:migrate<br /></code></pre><br /><br />Now lets turn these views into
+      erector views. Erector comes with a tool that will turn your erb's into erector classes. Run the following from
+      your application root directory:<br /><pre class='code'><code><br />erector
+      app/views/customers/**<br /></code></pre><br />If you look in your views/customers
+      directory you will now see .rb files. Let's compare the code. Here is our show.html.erb:<br /><br /><pre
+      class='code'><code><br />&lt;p&gt;<br /> &lt;b&gt;First name:&lt;/b&gt;<br
+      /> &lt;%=h @customer.first_name %&gt;<br />&lt;/p&gt;<br /><br />&lt;p&gt;<br
+      /> &lt;b&gt;Last name:&lt;/b&gt;<br /> &lt;%=h @customer.last_name %&gt;<br />&lt;/p&gt;<br
+      /><br />&lt;p&gt;<br /> &lt;b&gt;Company:&lt;/b&gt;<br /> &lt;%=h
+      @customer.company %&gt;<br />&lt;/p&gt;<br /><br />&lt;p&gt;<br />
+      &lt;b&gt;Phone:&lt;/b&gt;<br /> &lt;%=h @customer.phone %&gt;<br />&lt;/p&gt;<br
+      /><br />&lt;p&gt;<br /> &lt;b&gt;Email:&lt;/b&gt;<br /> &lt;%=h
+      @customer.email %&gt;<br />&lt;/p&gt;<br /><br /><br />&lt;%= link_to
+      'Edit', edit_customer_path(@customer) %&gt; |<br />&lt;%= link_to 'Back', customers_path %&gt;<br
+      /></code></pre><br /><br />Now here is the erector equivalent: <br /><br /><pre
+      class='code'><code><br />class Views::Customers::Show &lt; Erector::Widget<br /> def
+      content<br /> p do<br /> b do<br /> text 'First name:'<br /> end<br /> text
+      @customer.first_name<br /> end<br /> p do<br /> b do<br /> text 'Last name:'<br />
+      end<br /> text @customer.last_name<br /> end<br /> p do<br /> b do<br /> text
+      'Company:'<br /> end<br /> text @customer.company<br /> end<br /> p do<br /> b do<br
+      /> text 'Phone:'<br /> end<br /> text @customer.phone<br /> end<br /> p do<br />
+      b do<br /> text 'Email:'<br /> end<br /> text @customer.email<br /> end<br />
+      rawtext link_to('Edit', edit_customer_path(@customer))<br /> text '|'<br /> rawtext link_to('Back',
+      customers_path)<br /> end<br />end<br /></code></pre><br /><br />It is
+      pretty straight forward. One gotcha is that the base class is the <br />Erector::Widget class. The problem
+      is that we are using rails helper and these are exposed using the Erector::RailsWidget base class. You can either
+      change the base class to Erector::RailsWidget or you can introduce an erector layout that derives from
+      Erector::RailsWidget and then you would derive from your layout class. (See my last post for more info on this.)
+      The other thing you need to do is to move or destroy the erb files. If you don't move or delete them then your new
+      erector view classes will not be found. Now you have erector views for your scaffolded customer. Take it for a
+      spin.<br /><br />I personally think the syntax is cleaner if we use the {} block syntax instead of do
+      end. Here is the same view re-written to use {}:<br /><br /><pre class='code'><code><br
+      />class Views::Customers::Show &lt; Erector::Widget<br /> def content<br /> p {<br /> b
+      {text 'First name:'}<br /> text @customer.first_name<br /> }<br /> p {<br /> b {text 'Last
+      name:'}<br /> text @customer.last_name<br /> }<br /> p {<br /> b {text 'Company:'}<br />
+      text @customer.company<br /> }<br /> p {<br /> b {text 'Phone:'}<br /> text
+      @customer.phone<br /> }<br /> p {<br /> b {text 'Email:'}<br /> text @customer.email<br
+      /> }<br /> rawtext link_to('Edit', edit_customer_path(@customer))<br /> text '|'<br />
+      rawtext link_to('Back', customers_path)<br /> end<br />end<br /></code></pre><br
+      /><br />Now you have a feel for what it looks like. How about a quick refactor of this code. I personally
+      don't like the hard coded labels, so let's remove that:<br /><br /><pre class='code'><code><br
+      />class Views::Customers::Show &lt; Erector::Widget<br /> <br /> def show_column(col)<br />
+      p {<br /> b {text col.to_s.titleize }<br /> text @customer[col]<br /> }<br /> end<br />
+      <br /> def content<br /> show_column :first_name <br /> show_column :last_name<br />
+      show_column :company<br /> show_column :phone<br /> show_column :email<br /> <br />
+      rawtext link_to('Edit', edit_customer_path(@customer))<br /> text '|'<br /> rawtext link_to('Back',
+      customers_path)<br /> end <br />end<br /></code></pre><br /><br />Now
+      that's what I'm talking about. Now gee, if i do that in all my show views, I can easily refactor that method and
+      make it available in either a base class or a module mix-in. What I like is how easy the refactoring is. It feels
+      as it should easy.<br /><br /><h3>Rawtext and text</h3><br />You'll notice that we
+      output using either text or rawtext. The difference is text is escaped and rawtext is not.
+    

@@ -1,0 +1,107 @@
+---
+layout: post
+title: Erector - Object Oriented views
+date: '2009-05-10T09:38:00.000-07:00'
+author: Rx
+tags: 
+modified_time: '2009-05-10T13:12:59.584-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-5021197380495152113
+blogger_orig_url: http://railsindirection.blogspot.com/2009/05/erector-object-oriented-views.html
+---
+
+I just got back from railsconf. On the plane ride home I decided to take a look at <a
+      href="http://erector.rubyforge.org/userguide.html">Erector</a>. Erector, besides having a cool name, is a
+      dsl for writing markup. It is very similar to markaby, except erector views are not templates, they are plain old
+      ruby objects. Let's look at an example:<br /><pre class='code'><code><br />class
+      Views::Home::Index &lt; Views::Layouts::Application<br /> def main_content<br /> h1 'Welcome to
+      Voomify'<br /> p do<br /> text 'What is Voomify?'<br /> end<br /> p "Voomify is the verb
+      for applying Voom to a problem."<br /> <br /> p "Voom as defined by Dr Seuss in 'The Cat in the Hat
+      Comes Back':"<br /> <br /> blockquote do<br /> p "'Voom is so hard to get,<br /> You never
+      saw anything<br /> Like it, I bet.<br /> Why, Voom cleans up anything<br /> Clean as can be!'"<br
+      /> <br /> p "Then he yelled,<br /> 'Take your hat off now,<br /> Little Cat Z!<br />
+      Take the Voom off your head!<br /> Make it clean up the snow!<br /> Hurry! You Little Cat!<br />
+      One! Two! Three! GO!'"<br /> <br /> p "Then the Voom...<br /> It went VOOM!<br /> And, oh
+      boy! What a VOOM!"<br /> <br /> <br /> p "Now, don't ask me what Voom is.<br /> I never
+      will know.<br /> But, boy! Let me tell you<br /> It DOES clean up snow!"<br /> end<br />
+      <br /> end<br />end<br /></code></pre><br /><br />This will render the
+      following code:<br /><br /><pre class='code'><code><br />&lt;h1&gt;Welcome
+      to Voomify&lt;/h1&gt;&lt;p&gt;What is Voomify?&lt;/p&gt;&lt;p&gt;Voomify is the
+      verb for applying Voom to a problem.&lt;/p&gt;&lt;p&gt;Voom as defined by Dr Seuss in 'The Cat in
+      the Hat Comes Back':&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;'Voom is so hard to get,<br />
+      You never saw anything<br /> Like it, I bet.<br /> Why, Voom cleans up anything<br /> Clean as
+      can be!'&lt;/p&gt;&lt;p&gt;Then he yelled,<br /> 'Take your hat off now,<br /> Little
+      Cat Z!<br /> Take the Voom off your head!<br /> Make it clean up the snow!<br /> Hurry! You
+      Little Cat!<br /> One! Two! Three! GO!'&lt;/p&gt;&lt;p&gt;Then the Voom...<br /> It
+      went VOOM!<br /> And, oh boy! What a VOOM!&lt;/p&gt;&lt;p&gt;Now, don't ask me what Voom is.<br
+      /> I never will know.<br /> But, boy! Let me tell you<br /> It DOES clean up snow!&lt;/p&gt;&lt;/blockquote&gt;<br
+      /></code></pre><br /><br /><br />Admittedly this is not a very good example
+      showing any benefit at all to using Erector. It is all markup and requires no real logic at all. Be patient we'll
+      eventually get there.<br /><br /><br />Why would anyone want to do that? We'll for one I hate
+      markup. (When I'm in full markup mode, i feel dirty.) If you love markup and erbs, then you should stop reading
+      now. Before you leave, I'll leave you with this, you can easily mix erector and erbs (or any other template that
+      works with rails). Some tasks are very well suited to markup and others are better suited to a markup dsl. If you
+      are tag heavy then you should stick with your erb's. If you find you views are light with markup but heavy with
+      ruby flow and control logic then erector or markaby may be the ticket. <br /><br /><h3>Markaby
+      or Erector</h3><br /><br />I dont' know much about Markaby. After taking Erector for a spin, I
+      took a closer look at Markaby. I like it. The biggest difference to me is that Markaby allows you to create ruby
+      template files the same way erb's do. The views are still templates with ruby syntax. They are not first class
+      ruby objects. With erector they are first class plain old ruby objects. Why is this good? It gives you all the
+      tools of inheritance and mixin's for your views. That is cool. Especially for an application with multiple views
+      of the same underlying models. You can refactor your views into base classes that derive and render the same data
+      in different ways. This is object oriented design for views. Nice.<br /><br /><br /><h3>Side
+      Note</h3><br /><br />I've seen object oriented view code in other languages and it leads to some
+      very powerful re-use that all OO programmers can understand. The most ambitious of these attemps was by an HR
+      company named Seeker in the bay area. I was working for Concur at the time and we bought Seeker back in 1999. (It
+      did not work out well, but that is a story for another time.) Seeker created their own markup language that was
+      object oriented. The nature of HR data is that it has very complicated rules regarding who can see what data and
+      when. The OO design of the language allowed that to be abstracted to the base classes and a functional programmer
+      simply focused on the problem at hand. They took it further, as all commercial enterprise applications do, and
+      they allowed the customer to define new models and views. Those views were very easy to write with this advanced
+      data access logic abstracted out. Their customers loved it. They wrote very advanced business applications on top
+      of this abstraction.<br /><br /><br /><h3>A Closer Look</h3><br /><br />So
+      let's look a little deeper at using Erector with rails. Follow the erector installation and you'll be able to
+      write an erector view. One gotcha I ran into was the fact that your views should derive from Erector::RailsWidget.
+      If you don't do that you don't have access to the rails helpers.<br /><br /><h3>To layout or not
+      to layout</h3><br /><br />You have a couple of options for the layout. You can keep your erb
+      layout and just drop in your Erector views. That is cool if you have an app already that you want to mix erector
+      into quickly. It also allows the views to be rendered with different layouts.<br /><br /><br />The
+      other option is to create an Erector layout. If you do that then you set your controler like so:<br /><br
+      /><pre class='code'><code><br />class HomeController &lt; ApplicationController<br />
+      layout nil<br />...<br /></code></pre><br /><br />Here is a simple erector
+      layout:<br /><br /><pre class='code'><code><br />class Views::Layouts::Application
+      &lt; Erector::RailsWidget<br /> def javascript_includes <br /> javascript_include_tag
+      'application' <br /> end<br /><br /> def stylesheet_includes<br /> stylesheet_link_tag
+      'styles' <br /> end<br /><br /> def header<br /> h1 'Voomify'<br /> end<br /><br
+      /> # override this to render your view 'main' content<br /> def main_content <br /> end<br />
+      <br /> def footer <br /> a 'Home', :href=&gt;"/"<br /> end<br /><br /> <br />
+      def content<br /> <br /> html do<br /> head do<br /> title "Voomify"<br />
+      javascript_includes<br /> stylesheet_includes<br /> end<br /> body do <br /> <br />
+      div :id=&gt;"maincontainer" do <br /><br /> div :id=&gt;"contentwrapper" do<br /> div
+      :id=&gt;"topsection" do<br /> header<br /> end<br /> <br /> div :id=&gt;"contentcolumn"
+      do<br /> main_content<br /> end<br /> div :id=&gt;"footer" do<br /> footer <br />
+      end<br /> end <br /> end<br /> end<br /> end <br /> end<br />end<br /></code></pre><br
+      /><br /><br /><br />Then you derive your view from the layout erector class. The view example
+      above does just that. Notice that the view defined above implements main_content. This is the method defined by
+      our layout, you can name it whatever you want. You'll also notice that it has methods to override for the header,
+      footer, javascript_includes and stylesheet_includes. So if the page want's to modify any of those elements all it
+      needs to do is override those methods. It can call super if it wants or just replace it.<br /><br /><br
+      />This got me thinking about the decoupled relationship between templates and their view. The view does not
+      know anything about where they are being rendered. Generally this is a very good thing. For example a view may be
+      rendered on a page, or as an ajax call. Coupling the view to the layout creates a tight dependency between the
+      two. This troubled me at first. (OK not that much, the world has bigger problems!) But then I started thinking
+      about it. How often do I have single view that has a different layout? Not much. When I do with Erector I could
+      use a decorator pattern from my base layout. OK that works. What about ajax forms? I have not tried it yet, but
+      I'm pretty sure I can call my main_content to return to an ajax request. <br /><br /><br /><br
+      />OK so not very often do I have multiple layout variations with the same view. What does happen a lot is that
+      I would like to make a modification to how the layout renders based on the view. Eventually the layout ends up
+      with conditionals that render some of the erb if some variable is set by the controller. Yuck! How many times have
+      you done that. (Be honest!) You say to yourself its ugly, but it's a template. You grit your teeth and move on. Or
+      if it really bothers you, you introduce a helper, but it suffers from the same condition, branching logic, but now
+      its written in ruby. An Object Oriented layout can easily eliminate that. Another case is when a view participates
+      in another relationship. For example a given view may be related to other models in the system. The layout defines
+      a standard layout for this relationship and then the view code implements main_content and related_content. The
+      related_content method could return markup, or the layout may take care of the markup, and all the related content
+      needs to do is return the model objects that are related to my current view. <br /><br /><br />In
+      my next post I'll be building a simple contact model and then turning it into an Erector set of views. Until then
+      ... keep it clean.
+    

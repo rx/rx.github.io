@@ -1,0 +1,135 @@
+---
+layout: post
+title: Backbone.js and dependent selects
+date: '2011-08-08T08:25:00.000-07:00'
+author: Rx
+tags: 
+modified_time: '2011-09-06T09:53:48.088-07:00'
+blogger_id: tag:blogger.com,1999:blog-3950436325253663978.post-589633878882377770
+blogger_orig_url: http://railsindirection.blogspot.com/2011/08/backbonejs-and-dependent-selects.html
+---
+
+I had a fairly simple development task. Once I've done 20 different ways over the years. I have
+      a select control with customers. When it changes I need to load the set of customer shipping addresses. The client
+      code was a combination of jquery ajax calls and a custom client library for rendering/managing to server restful
+      resources. Pretty quickly the code was getting messy! The problem seemed so easy, but the code did not reflect
+      that. I decided to refactor it using <a href='http://documentcloud.github.com/backbone/'>backbone.js</a>.
+      I'm going to show you how I solved this problem in this post. It will not cover the basics of <a
+      href='http://documentcloud.github.com/backbone/'>backbone.js</a>. It will cover a simple use case and the
+      design I came up with. It also covers some caveats I discovered with <a
+      href='http://documentcloud.github.com/backbone/'>backbone.js</a>. <br /><br />Finally <a
+      href='http://documentcloud.github.com/backbone/'>backbone.js</a> has entered my development toolkit. I
+      was waiting for it without even knowing it. It addresses so many issues with typical client code development. <br
+      /><br />If you don't know what Backbone is, then I suggest you visit <a
+      href='http://documentcloud.github.com/backbone/'>backbone.js</a>. They have a number of tutorials.
+      (Including this one.) The docs are solid. Once you bone up on the basics come on back. <br /><br />One
+      of the first benefits was the code organization. With Backbone and <a
+      href='http://documentcloud.github.com/jammit/'>Jammit</a> (for rails) I can layout a really nice
+      development tree with each class in its own file. Here is the tree I currently have setup:<br /><br /><pre
+      name="code" class="bash">├── app<br />│   ├── helpers<br />│   ├── models<br />│   │   └──
+      collections<br />│   ├── templates<br />│   └── views<br />└── core<br /> ├── helpers<br
+      /> ├── models<br /> ├── templates<br /> │   └── controls<br /> └── views<br /> └──
+      controls</pre><br />I am able to have a 'core' set of helpers, models, templates, and views that are
+      used across applications. This is not really a backbone feature, but because of backbone I setup <a
+      href='http://documentcloud.github.com/jammit/'>Jammit</a> this way.<br /><br />The second
+      thing I really loved was the clear separation between model and view. This just feels so natural having done the
+      same thing on the server side for so many years. I'm going to assume you are familiar with the three basic
+      backbone classes that I'm going to use: Model, Collection and View.<br /><br />Ok the problem is how
+      to have one select change and then once the change occurs, populate another select with a collection based on the
+      first selected. In my case I have the models 'Customer' and 'Address'. A customer has many shipping addresses. So
+      every time a new customer is selected a different set of shipping addresses need to be loaded. <br /><br
+      />Let's start by taking a look at the models (you'll see they are trivial).<br /><br /><pre
+      name="code" class="javascript">App.Models.Customer = Backbone.Model.extend({});</pre><br /><br /><pre
+      name="code" class="javascript">App.Models.Address = Backbone.Model.extend({});</pre><br /><br />Ok
+      those were trivial. I like trivial. Now we will look at the collections. These are bound to our select controls.<br
+      /><br /><pre name="code" class="javascript">App.Collections.Customers =
+      Backbone.Collection.extend({<br /> model: App.Models.Customer,<br /> url: '/customers'<br />});</pre><br
+      /><pre name="code" class="javascript">App.Collections.Addresses = Backbone.Collection.extend({<br />
+      model: App.Models.Address,<br /> url: '/addresses'<br />});</pre><br /><br />Again
+      trivial. We tell the collection what our resource url looks like. <br /><br />Ok, now we get to the
+      meat of the problem. The views. First I did was create a new view that can render a select based on a collection.
+      It has a few other features I'll point out.<br /><br /><pre name="code" class="javascript">Core.Controls.Select
+      = Backbone.View.extend({<br /><br /> initialize: function(){<br /> _.bindAll(this,
+      'render','value','triggerDependents','selectControl','startingIndex','addModel');<br /> this.selected =
+      this.options.selected;<br /> this.dependent_views = this.options.dependent_views;<br /> // if the
+      collection changes, re-renders<br /> this.collection.bind("all", this.render);<br /> this.render();<br
+      /> },<br /> events:{<br /> "change": "triggerDependents"<br /> },<br /> defaults:{<br
+      /> collection: [], // The collection to render<br /> selected: null, // The selected model<br />
+      dependent_views: []// The dependent views to notify on change<br /> },<br /> render: function(){<br
+      /> this.el.html(JST.select(this));<br /> },<br /> selectControl: function() {return
+      this.$("select");},<br /> value: function() { return this.selectControl().val();},<br /> // returns
+      the starting index into the collection<br /> startingIndex: function(){<br /> var index = 0;<br />
+      if(this.options.blank)index = index +1;<br /> return index;<br /> },<br /> addModel:
+      function(model,selected){<br /> if(selected)this.selected = model;<br /> this.collection.add(model);<br
+      /> return this;<br /> },<br /> triggerDependents: function(event) {<br /><br />
+      if(this.selectControl().selectedIndex>=this.startingIndex())this.selected =
+      this.collection.at(this.selectControl().selectedIndex-this.startingIndex());<br /> var _this = this;<br />
+      _.each(this.dependent_views,function(view){<br /> view.trigger(_this.id+"."+event.type, _this);<br />
+      });<br /> }<br />});<br /></pre><br /><br />Let's break this one done a little
+      bit. Backbone has an initialize function that gets called after the object is created. In our initialize we do the
+      following:<br /><br />First we use the underscore function that will ensure that when our function is
+      called from an event somewhere, the this variable is setup as we expect it. In Ruby or other languages it is
+      impossible to call an object without its self or this setup correctly. Javascript is like C. You can do objects,
+      but they are not really first class citizens. Once you get used to these quirks they are quite serviceable. Second
+      we pull out a couple of class attributes that we expect to be passed into the constructor. By default the
+      constructor puts these into the <em>options</em> hash, because they are really core to our class we
+      pull them up. This is a style thing. I left some other options in the hash, because they were not a fundamental
+      data structure to our view. We then bind to our collection, so if anything changes on the collection it will all
+      our render method and redraw our view. Finally we render the control.<br /><br />The next thing you
+      see are two hashes: <em>events</em> and <em>defaults</em>. Events in views are jquery
+      events and this hash is a shortcut for binding to them. We bind to the change event and call our function
+      triggerDependents. Note: If you extend this 'class' and define an events hash it will take precedence over the
+      base. The <em>defaults</em> hash is used to pre-populate the options with defaults. I've setup the
+      collection and dependent_views as empty arrays (instead of null). I also setup select as null. Although null is
+      not a very useful default , I think it documents what options the class will accept. <br /><br />Now
+      in our render we are simply putting into the html element the results of our select template. We are using the
+      _.template method from the underscore library and Jammit is managing the template loading and compilation. Let's
+      take a look at the template:<br /><br /><script
+      src="https://gist.github.com/1132170.js?file=select.jst"></script><br /><br />We are building
+      the select control using the collection, selected and options passed in. <br /><br />So far so good.
+      Nice and clean. <br /><br />I'm going to leave the rest of the select control as an exercise for the
+      reader. I do want to point out the <em>triggerDependents</em> function. This will trigger the change
+      event to any dependent_views passed into our constructor. It appends the id of the control so that a dependent
+      view can listen to many controls and catch their events separately. We are using the event binding with
+      backbone.js for this communication. This is independent from jquery events. it seems a little strange at first
+      that they are not related, but the separation makes sense. If you have non-DOM events you want to trigger and
+      handle, then use the model and view .bind and .trigger methods. The events hash does not route these non-dom
+      events, so you have to bind to them in your initialize (or wherever is most appropriate.)<br /><br />OK
+      so were are we at. We have a select control that will notify any dependent views when they are changed. I think we
+      are ready to actually use them. Let's start with the select for customer addresses.<br /><br /><pre
+      name="code" class="javascript">App.Views.CustomersAddressSelect = Core.Controls.Select.extend({ <br />
+      initialize: function(){<br /> Core.Controls.Select.prototype.initialize.call(this);<br />
+      this.bind("order_customer_id.change", this.loadAddresses);<br /> },<br /> loadAddresses:
+      function(control){<br /> this.collection.reset();<br /> if(control.value()>0){<br />
+      this.collection.fetch({data: {"parent_key[customer_id]": control.value()}});<br /> }<br /> }<br />});</pre><br
+      /><br />Here you see we are binding to the order_customer_id.change event that will get fired by the
+      customer select. In response to this event we reset our collection. (This will cause a render that will disable
+      the control, while we fetch the new records.) Then we fetch the addresses passing the parent key that our
+      controller expects to filter the addresses. <br /><br />Note: From a security perspective you are
+      going to want some server side check to make sure the given request is allowed to view the given records. That is
+      clearly beyond the scope of this post!<br /><br />OK now to hook it all up we have the following:<br
+      /><br /><pre name="code" class="javascript">$(function(){<br /> // our empty address
+      collection<br /> var addresses = new App.Collections.Addresses([]);<br /> // Our dependent customer
+      addresses select<br /> var shipping_address_select = new App.Views.CustomersAddressSelect({el:
+      $('#ship_to_address_select'),<br /> id: 'order_shipping_address_id',<br /> name: 'order[
+      shipping_address_id]',<br /> collection: addresses});<br /> // Our customers collection - populated
+      from the server<br /> var customers = new App.Collections.Customers(<%= raw select.collect{ |ct| {:name=>ct.name,
+      :id=>ct.id}}.to_json %>);<br /> // The customer select, here we pass in the customers collection and
+      the shipping_address_select dependent view.<br /> new Core.Controls.Select({el: $('#customer_select'),<br
+      /> id: 'order_customer_id',<br /> name: 'order[customer_id]',<br /> collection: customers,<br />
+      blank: 'Select a customer',<br /> // set the shipping_address_select as dependent view<br /> // this
+      will cause all events of the customer select to get<br /> // fired to the dependent controls with the
+      id.event<br /> dependent_views:[shipping_address_select]});<br />});</pre><br /><br />Wow
+      that looks pretty simple. We are doing a couple of things here to note: <br /><br /> This is a erb
+      file that is building up the collection of customers on the server. Since we sourced this code from the server, we
+      could save the round trip to fetch the customers. We could have fetched the customers from the client just as
+      easily. <br /><br />We are binding to existing elements on the page by passing in <pre>el:
+      $(selector)</pre>.<br /><br />We are passing in the shipping_address_select control as a
+      dependent_view, this hooks up our notifications on change.<br /><br />Note: if you override the <em>events</em>
+      hash in a derived class you will need to proxy any events that the base class was handling. In my case I ended up
+      deriving a customer select class and wanted to listen to the change event. I lost my dependent view notifications,
+      so in my change function I added a call to triggerDependents. I was not thrilled about this approach. I think
+      preserving events in base classes would be a nice change for backbone.js.<br /><br />I hope you
+      enjoyed this post. I loved working with Backbone.js and plan on building a full scale view library that makes all
+      the crud operations easy as this.<br /><br />Cheers - Russell
+    
