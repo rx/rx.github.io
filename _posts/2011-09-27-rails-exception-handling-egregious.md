@@ -186,8 +186,6 @@ def
 end
 {% endhighlight %}
 
-<br
-        />
 {% highlight ruby %}
 # override this if you want to change your respond_to behavior
 def egregious_respond_to(exception)
@@ -201,9 +199,6 @@ def egregious_respond_to(exception)
  end
 end
 {% endhighlight %}
-
-<br
-        />
 {% highlight ruby %}
 # override this if you want to change what html static file gets returned.
 def build_html_file_path(status)
