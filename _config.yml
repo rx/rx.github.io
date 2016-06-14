@@ -1,10 +1,10 @@
-# --- Serving options --- #
+# --- General options --- #
 
 # url is the full website URL
 # baseurl is the website's URL without the hostname
 
-# If you are building a simple GitHub user page (username.github.io) then use these settings:
-url: "http://www.russelledens.com"
+# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
+url: "http://rx.github.io"
 baseurl: ""
 
 # If you are building a GitHub project page then use these settings:
@@ -20,6 +20,15 @@ title: Rx
 description: Architect
 
 # --- Navigation bar options --- #
+
+# List of links in the navigation bar
+navbar-links:
+  About Me: "aboutme"
+  Resources:
+    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
+    - Learn markdown: "http://www.markdowntutorial.com/"
+    - GitHub Pages: "https://pages.github.com/"
+  Author's home: "http://deanattali.com"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
@@ -42,7 +51,7 @@ author:
   twitter: russelledens   # eg. daattali
   linkedin: in/russelledens  # eg. "pub/dean-attali/8/946/143"
   stackoverflow: users/899339/rx  # eg. "users/3943160/daattali"
- 
+
 # Select which links to show in the footer
 footer-links-active:
   rss: false
@@ -69,10 +78,13 @@ footer-links-active:
 
 # Output options (more information on Jekyll's site)
 timezone: "America/New_York"
-markdown: redcarpet
-highlighter: pygments
+markdown: kramdown
+highlighter: rouge
 permalink: /:year-:month-:day-:title
 paginate: 5
+
+kramdown:
+  input: GFM
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
@@ -81,18 +93,23 @@ defaults:
       path: ""
       type: "posts"
     values:
+      layout: "post"
       comments: true  # add comments to all blog posts
   -
     scope:
       path: "" # all files
     values:
-      layout: "default"
+      layout: "page"
+      show-avatar: true
 
 # Exclude these files from production site
 exclude:
-  - CNAME
+  - Gemfile
+  - Gemfile.lock
   - LICENSE
   - README.md
+  - CNAME
+  - Vagrantfile
 
 # prose.io config
 prose:
@@ -138,6 +155,9 @@ prose:
           element: "checkbox"
           label: "Publish"
           help: "Check to publish post, uncheck to hide."
-  
+
+gems:
+  - jekyll-paginate
+
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189

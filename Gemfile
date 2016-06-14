@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+gem 'execjs'
+gem 'therubyracer'
 gem 'github-pages'
-gem 'jekyll-import'
-gem 'RedCloth'
+gem 'jekyll-paginate'
+gem 'rouge'
