@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Russell Edens
-subtitle: Technical Resume
+subtitle: Technical     Resume
 ---
 
 Seeking opportunity to fully apply my depth of skills and experience to create [clean software](http://http://www.voomify.io/2016-06-21-clean-software/) with great people.
@@ -18,7 +18,7 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 * Consulting to build clean software
 
 ## OptiShot
-* Co-founded company - twice a fortune 500 fastest growing company
+* Co-founded company - twice an Inc 500 fastest growing company
 * Designed and built a low cost, accurate and durable infrared swing pad hardware
 * Designed algorithms to calculate physics of ball flight, using best fit analysis
 * Built multi-platform gaming platform
