@@ -3,7 +3,7 @@ layout: page
 title: Russell Edens
 subtitle: About me
 ---                 
-Russell Edens is passionate about building [clean software](http://voomify.io/).
+Russell Edens is passionate about building [clean software](http://www.voomify.io/2016-06-21-clean-software).
 
 He is co-founder and consultant at [Voomify](http://voomify.io).
 
