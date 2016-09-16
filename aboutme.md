@@ -14,6 +14,6 @@ He is co-founder at [Voomify](http://voomify.io), a software consulting company.
 
 ***He is available for hire.***
 
-You can reach him via email [russell@voomify.com](mailto:hireus@voomify.com) or phone [231.590.1153](tel:12315901153)
+You can reach him via email *russell at voomify.com* or phone [231.590.1153](tel:12315901153)
 
 [Russell's vita]({{ "/resume" }})

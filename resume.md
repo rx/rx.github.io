@@ -4,7 +4,7 @@ title: Russell Edens
 subtitle: Vita
 ---
 
-Crafter of [clean software](http://www.voomify.io/2016-06-21-clean-software/) and [clean architecture's](http://www.voomify.io/2016-06-21-clean-architecture/) with great people.
+Crafter of [clean software](http://www.voomify.io/2016-06-21-clean-software/) and [clean architectures](http://www.voomify.io/2016-06-21-clean-architecture/) with great people.
 
 ## Major Languages
 
