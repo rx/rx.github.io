@@ -1,20 +1,25 @@
 ---
 layout: page
 title: Russell Edens
-subtitle: Technical     Resume
+subtitle: Vita
 ---
 
-Seeking opportunity to fully apply my depth of skills and experience to create [clean software](http://http://www.voomify.io/2016-06-21-clean-software/) with great people.
+Crafter of [clean software](http://www.voomify.io/2016-06-21-clean-software/) and [clean architecture's](http://www.voomify.io/2016-06-21-clean-architecture/) with great people.
 
 ## Major Languages
 
-Ruby, C++, Java, Javascript
+Ruby, C++, Java
+
+## Minor Languages
+
+Too many to list.
 
 ## Skills
 
 Architecture, leadership, clean code, TDD, agile, communication, technical writing and speaking
 
-## Voomify
+## [Voomify](http://www.vooify.io)
+
 * Consulting to build clean software
 
 ## OptiShot
@@ -30,7 +35,7 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 
 ## Concur -> acquired by SAP
 * Joined Concur as employee 40. Built the first client server version of the product (2.0). Was responsible for the backend. This product launched Concur into the enterprise space.
-* Was project lead and architect for first web app (3.0). Was one of the first web apps in production anywhere. Included the design of an object transport markup that pre-dates and was very similar to json. Included an object model layer that separated the view and the business logic.
+* Project lead and architect for first web app (3.0). One of the first web apps in production anywhere. Included the design of an object transport markup that pre-dates and was very similar to json. Included an object model layer that separated the view and the business logic.
 * Launched SaaS version of expense. It was one of the first SaaS products to market.
 * Architect and lead for 7.0 - a multilingual, multi currency version of the expense product. Featured an efficient data access layer that optimized queries, an automated test generation process, an advanced ORM with SQL parser, and a view definition language that generated code.
 * Introduced Concur to agile methodologies.
