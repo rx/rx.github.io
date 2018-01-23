@@ -45,7 +45,7 @@ navbar-links:
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Russell Edens
-  email: "rx@voomify.com"
+  email: "rx@russelledens.net"
   #facebook: yourname  # eg. daattali
   github: rx    # eg. daattali
   twitter: russelledens   # eg. daattali
@@ -156,7 +156,7 @@ prose:
           label: "Publish"
           help: "Check to publish post, uncheck to hide."
 
-gems:
+plugins:
   - jekyll-paginate
 
 # Beautiful Jekyll / Dean Attali

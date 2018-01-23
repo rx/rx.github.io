@@ -6,19 +6,15 @@ subtitle: Vita
 
 Crafter of [clean software](http://www.voomify.io/2016-06-21-clean-software/) and [clean architectures](http://www.voomify.io/2016-06-21-clean-architecture/) with great people.
 
-## Major Languages
-
-Ruby, C++, Java
-
-## Minor Languages
-
-Too many to list.
-
 ## Skills
 
 Architecture, leadership, clean code, TDD, agile, communication, technical writing and speaking
 
-## [Voomify](http://www.vooify.io)
+## [Geotix](http://www.geotix.com)
+
+* Building a [world changing]() ticketing system.
+
+## [Voomify](http://www.voomify.io)
 
 * Consulting to build clean software
 
