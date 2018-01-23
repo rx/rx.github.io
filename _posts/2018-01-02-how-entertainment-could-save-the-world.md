@@ -2,6 +2,7 @@
 layout: post
 title: How Entertainment Could Save the World
 subtitle: Go a see a play at your local theater and make the world a better place.
+description: Go a see a play at your local theater and make the world a better place.
 draft: true
 image: making-world-a-better-place.png
 ---
