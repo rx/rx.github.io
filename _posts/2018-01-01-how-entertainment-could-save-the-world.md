@@ -5,10 +5,10 @@ subtitle: Go a see a play at your local theater and make the world a better plac
 draft: true
 image: making-world-a-better-place.jpg
 ---
-As the CTO of [Getotix](http://geotix.com), I've been building a world class event ticketing system. 
+As the CTO of [Getotix](http://geotix.com), I've been building a world-class event ticketing system. 
 I wanted to reflect on the importance of entertainment and specifically local events.
 
-I know it sounds cliche, another software company trying to do something important that 'changes the world'.
+I know it sounds cliché, another software company trying to do something important that 'changes the world'.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Rkj6PhhhzDk?rel=0&amp;start=20" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -29,7 +29,7 @@ Whoa Russ, I hear you but you're equating saving the world to going to see a loc
 Yes, yes I am. Look it may not be world peace, but if you took two leaders of the world to see [A Midsummer Night's Dream](https://mynorthtickets.com/events/a-midsummer-night-s-dream-540108ec-b783-4d24-a650-e8288299da60) 
 they would be hard pressed not to see eye to eye about at least one thing.
 
-Theater can change our perspective. It can open our eyes to whats really important. It can make us laugh at whats really scary.
+Theater can change our perspective. It can open our eyes to what's really important. It can make us laugh at what's really scary.
 It can start a conversation that we would never start about something important. It connects us to what matters more than our problems.
 It connects us to the others that we share that experience with.
 
