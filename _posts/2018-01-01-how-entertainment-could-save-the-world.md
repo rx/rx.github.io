@@ -5,7 +5,7 @@ subtitle: Go a see a play at your local theater and make the world a better plac
 draft: true
 image: making-world-a-better-place.jpg
 ---
-As the CTO of [Getotix](http://geotix.com), I've been building a world-class event ticketing system. 
+As the CTO of [Getotix](http://geotix.com), I've been building a world-class event ticketing system with an awesome team. 
 I wanted to reflect on the importance of entertainment and specifically local events.
 
 I know it sounds cliché, another software company trying to do something important that 'changes the world'.
@@ -34,7 +34,7 @@ It can start a conversation that we would never start about something important.
 It connects us to the others that we share that experience with.
 
 With everyone looking at their phone all the time. 
-![phones](../img/banksy-mobile-lovers.jpg)
+[![phones](../img/banksy-mobile-lovers.jpg)](http://www.independent.co.uk/arts-entertainment/art/news/banksy-mobile-lovers-sold-owner-of-youth-club-where-artwork-appeared-in-bristol-received-death-9695327.html)
 
 Getting out and talking to each other face to face will reconnect us to each other.
 
