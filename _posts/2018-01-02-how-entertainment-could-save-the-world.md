@@ -3,7 +3,7 @@ layout: post
 title: How Entertainment Could Save the World
 subtitle: Go a see a play at your local theater and make the world a better place.
 draft: true
-image: making-world-a-better-place.jpg
+image: making-world-a-better-place.png
 ---
 As the CTO of [Getotix](http://geotix.com), I've been building a world-class event ticketing system with an awesome team. 
 I wanted to reflect on the importance of entertainment and specifically local events.
