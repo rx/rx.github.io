@@ -31,7 +31,8 @@ It can make us laugh at what’s really scary and can even scare us for laughing
 It connects us to what matters, to ourselves and to others.
 
 Look,  a play might not bring world peace, but if you took two world leaders to see the magic of 
-[A Midsummer Night's Dream](https://mynorthtickets.com/events/a-midsummer-night-s-dream-540108ec-b783-4d24-a650-e8288299da60), they’d be hard pressed not to agree on at least one thing. It’s a start. 
+[A Midsummer Night's Dream](https://mynorthtickets.com/events/a-midsummer-night-s-dream-540108ec-b783-4d24-a650-e8288299da60), 
+they’d be hard pressed not to agree on at least one thing. Even if it's that they prefer Mamma Mia!. It’s a start. 
 
 
 With everyone looking at their phone all the time.
