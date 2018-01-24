@@ -18,12 +18,12 @@ Touché, but stick with me here, it's a fact and not a fake one: **One ticket ca
 ## Say What?
 
 Look, the human experience is tough. 
-Life has a way of putting heavy rocks on our backs that we carry around and weigh us down.
+Life has a way of putting heavy rocks on our backs that we carry around and they weigh us down.
 
 ![travel](../img/travel-as-much-as-you-can.jpg)
 
-Experiences lift those rocks from our backs. It relieves us from the heaviness of life. 
-It makes life better and that makes us better. Better able to do great things.
+Experiences lift those rocks from our backs. They relieves us from the heaviness of life and 
+makes our life better and that makes us better. Better able to do great things.
 
 A great live performance is an experience that can change our perspective. 
 It can lift our spirits and our eyes to what’s really important. 
