@@ -22,8 +22,9 @@ Life has a way of putting heavy rocks on our backs that we carry around and they
 
 ![travel](../img/travel-as-much-as-you-can.jpg)
 
-Experiences lift those rocks from our backs. They relieves us from the heaviness of life and 
-makes our life better and that makes us better. Better able to do great things.
+Entertainment transports us, much like a mini vacation to someplace else. 
+It lifts those rocks from and releases us from the heaviness of life, 
+making life better and that makes us better. Better able to do great things.
 
 A great live performance is an experience that can change our perspective. 
 It can lift our spirits and our eyes to what’s really important. 
