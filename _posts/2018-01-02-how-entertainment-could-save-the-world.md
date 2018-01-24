@@ -5,11 +5,12 @@ subtitle: Go a see a play at your local theater and make the world a better plac
 description: Go a see a play at your local theater and make the world a better place.
 draft: true
 image: making-world-a-better-place.png
+permalink: geotix-making-the-world-a-better-place
 ---
 As the CTO of [Getotix](http://geotix.com), I've been building a world-class event ticketing system with an awesome team. 
 I wanted to reflect on the importance of entertainment and specifically local events.
 
-I know it sounds cliché, another software company trying to do something important that 'changes the world'.
+I know it sounds cliché, another software company trying to do something important that 'makes the world a better place'.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Rkj6PhhhzDk?rel=0&amp;start=20" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
