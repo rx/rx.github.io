@@ -6,7 +6,7 @@ draft: true
 image: making-world-a-better-place.png
 permalink: geotix-making-the-world-a-better-place
 ---
-As CTO of Geotix, I work with an amazing team building a world-class event ticketing system. 
+As CTO of Geotix, I work with an amazing team building, a world-class event ticketing system. 
 
 I know it sounds cliché, another software company trying to do something that ‘changes the world’. 
 Sounds like a skit on Silicon Valley. (Wait, it is a skit on Silicon Valley.)
