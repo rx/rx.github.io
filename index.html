@@ -22,7 +22,13 @@ subtitle: Blog
         </p>
 
         <div class="post-entry">
-          {{ post.content | truncatewords: 50 | strip_html | xml_escape}}
+            {% if post.preview_chars %}
+                {% assign preview_chars = post.preview_chars %}
+            {% else %}
+                {% assign preview_chars = site.preview_chars %}
+            {% endif %}
+
+          {{ post.content | truncatewords: preview_chars | strip_html | xml_escape}}
           <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
         </div>
 
