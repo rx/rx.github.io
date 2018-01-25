@@ -2,7 +2,6 @@
 layout: post
 title: See a Show and Change the World
 description: How one ticketing software company is making the world a better place.
-draft: true
 image: gavin-saving-the-world.png
 permalink: geotix-making-the-world-a-better-place
 date: '2018-01-15 7T04:20:00.000-05:00'
