@@ -5,6 +5,8 @@ description: How one ticketing software company is making the world a better pla
 draft: true
 image: gavin-saving-the-world.png
 permalink: geotix-making-the-world-a-better-place
+date: '2018-01-08 7T04:20:00.000-05:00'
+
 ---
 As CTO of Geotix, I work with an amazing team building, a world-class event ticketing system. 
 
