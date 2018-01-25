@@ -3,7 +3,7 @@ layout: post
 title: See a Show and Change the World
 description: How one ticketing software company is making the world a better place.
 draft: true
-image: making-world-a-better-place.png
+image: gavin-saving-the-world.png
 permalink: geotix-making-the-world-a-better-place
 ---
 As CTO of Geotix, I work with an amazing team building, a world-class event ticketing system. 
