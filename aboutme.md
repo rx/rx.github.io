@@ -5,8 +5,6 @@ subtitle: Russell Edens
 ---                 
 Currently he is the CTO of [Geotix](http://geotix.com) a [world changing](/geotix-making-the-world-a-better-place) event-ticketing platform.
 
-He is co-founder at [Voomify](http://voomify.io), a software consulting company.
-
 He co-founded [OptiShot](http://www.optishotgolf.com) to scratch an itch. (That itch has generated over 30 Million in 
 revenue and was an inc 500 fastest growing company two years in a row.) 
 
