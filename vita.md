@@ -22,8 +22,8 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 * Built Live multi-platform gaming server, key and licensing server, order management system, integration server
 * Over $30 million in revenue
 
-## [Concur](http://concur.com)
-&nbsp;&nbsp;&nbsp;&nbsp;<small>-> acquired by SAP for 8.3 billion</small>
+## [Concur](http://concur.com) 
+###### -> acquired by SAP for 8.3 billion
 ##### Chief Architect 
 * Joined Concur as employee 40. Built the first client server version of the product (2.0). This product launched Concur into the enterprise space.
 * Project lead and architect for first web app (3.0). One of the first web apps in production *anywhere*. Included the design of an object transport markup that pre-dates and was very similar to json. Included an object model layer that separated the view and the business logic.
@@ -33,7 +33,7 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 * Designed and coded the rules and workflow engines, still running backbone of Concur.
 
 ## Macola 
-&nbsp;&nbsp;&nbsp;&nbsp;<small>-> acquired by Exact Software</small>
+###### -> acquired by Exact Software
 ##### Research and Development Lead 
 * Built a report writer that within 6 months did 10% of the companies’ revenue. Included visual programming/layout language, virtual document manager and RTF reader and writer, was blazingly fast.
 * Lead a team to build the platform that the next generation of accounting products would run on top off. Included object oriented reusable components, a visual UI layout tool an object relational mapper that was event driven, an integrated scripting language that interacted with the object model.
