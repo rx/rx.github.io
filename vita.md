@@ -4,11 +4,11 @@ title: Russell Edens
 subtitle: Vita
 ---
 
-Leader and creator of software value using [clean software](http://www.voomify.io/2016-06-21-clean-software/), [clean architectures](http://www.voomify.io/2016-06-21-clean-architecture/) and agile methodologies.
+Creator of software value using [clean software](http://www.voomify.io/2016-06-21-clean-software/), [clean architectures](http://www.voomify.io/2016-06-21-clean-architecture/) and agile methodologies.
 
 ## Skills
 
-Architecture, leadership, clean code, TDD, agile, communication, technical writing and speaking
+Leadership, architecture, clean code, TDD, agile, communication, technical writing and speaking
 
 ## [Geotix](http://www.geotix.com)
 ##### CTO
