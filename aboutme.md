@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Russell Edens
-subtitle: About me
+title: About
+subtitle: Russell Edens
 ---                 
 Currently he is the CTO of [Geotix](http://geotix.com) a [world changing](/geotix-making-the-world-a-better-place) event-ticketing platform.
 

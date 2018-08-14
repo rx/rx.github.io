@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Russell Edens
-subtitle: Vita
+title:  Vita
+subtitle: Russell Edens
 ---
 
 Creator of software value using [clean software](http://www.voomify.io/2016-06-21-clean-software/), [clean architectures](http://www.voomify.io/2016-06-21-clean-architecture/) and agile methodologies.
