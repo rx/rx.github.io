@@ -42,6 +42,6 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 * Built tools to track elections, constituents and bills.
 
 ## Education
-B.S. Mathematics/Computer Science, Magna Cum Laude, Western Michigan University Lee Honors College
+B.S. Mathematics/Computer Science, Magna cum Laude, Lee Honors College | Western Michigan University
 
 Senior Thesis: *Chaos Theory - Self-Similarity of the Mandelbrot Set* 
