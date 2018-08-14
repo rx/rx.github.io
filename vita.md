@@ -17,7 +17,7 @@ Architecture, leadership, clean code, TDD, agile, communication, technical writi
 ## [OptiShot](http://www.optishotgolf.com)
 ##### Founder/CEO/CTO 
 * Co-founded company - twice an Inc 500 fastest growing company
-* Designed and built a low cost, accurate and durable infrared swing pad hardware
+* Designed and built a low cost, accurate and durable infrared golf simulator
 * Designed algorithms to calculate physics of ball flight, using best fit analysis
 * Built Live multi-platform gaming server, key and licensing server, order management system, integration server
 * Over $30 million in revenue
