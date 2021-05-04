@@ -13,7 +13,7 @@ Senior Chief Technology Officer with 25 years of expertise in leadership positio
 
 ## PROFESSIONAL EXPERIENCE
 ### [Evvnt](http://www.evvnt.com) | London, UK
-#### CTO
+##### CTO
 Built a scalable, high availability, white-labeled event ticketing platform. Including strategic planning, fundraising, budgeting, hiring, retaining, training and galvanizing a technical team to deliver high quality, innovative analytics, and web and mobile products.
 
 **Key Achievements:**
@@ -35,7 +35,7 @@ Built a scalable, high availability, white-labeled event ticketing platform. Inc
 * Managed personnel across product, data and support departments/teams.
 
 ## [OptiShot](http://www.optishotgolf.com)
-##### co-Founder/CEO 
+##### Co-Founder/CEO 
 Created, designed and manufactured the software, hardware and every other element of a beloved product that allows golfers to improve their game and play against others across the globe.
 
 **Key Achievements:**
